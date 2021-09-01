@@ -1,3 +1,5 @@
+/* Standard CSS*/
+
 .App {
   text-align: center;
 }
@@ -37,7 +39,13 @@
   }
 }
 
+/* My CSS*/
+
 .container__buttonBar__tablinks {
   width: 8vw;
   height: 3vh;
+}
+
+.article {
+  list-style-type: none;
 }

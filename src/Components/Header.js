@@ -13,7 +13,7 @@ const Header = ({
 }) => {
   const { showTabs } = useContext(ContainerContext);
   useEffect(() => {
-    let urlString = 'https://nc-news-maddie.herokuapp.com/api/articles';
+    let urlString = `https://nc-news-maddie.herokuapp.com/api/articles?order=${currentFilter.sort}&sort_by=${currentFilter.sortBy}`;
 
     axios.get(urlString).then((res) => {
       setArticles(res.data.articles);
@@ -40,8 +40,7 @@ const Header = ({
             onClick={() => {
               return setFilter({
                 sort: 'DESC',
-                sortBy: 'date',
-                votes: 10
+                sortBy: 'votes'
               });
             }}>
             {showTabs === 'show' ? 'Hot' : ''}
@@ -52,8 +51,7 @@ const Header = ({
             onClick={() => {
               setFilter({
                 sort: 'DESC',
-                sortBy: 'date',
-                votes: 0
+                sortBy: 'created_at'
               });
             }}>
             {showTabs === 'show' ? 'Latest' : ''}
@@ -65,24 +63,22 @@ const Header = ({
               setFilter(() => {
                 return {
                   sort: 'DESC',
-                  sortBy: 'comments',
-                  votes: 0
+                  sortBy: 'comment_count'
                 };
               });
             }}>
             {showTabs === 'show' ? 'Popular' : ''}
           </button>
           <button
-            className="container__buttonBar__tablinks tablinks--top"
+            className="container__buttonBar__tablinks tablinks--worst"
             disabled={showTabs === 'show' ? false : true}
             onClick={() => {
               setFilter({
-                sort: 'DESC',
-                sortBy: 'votes',
-                votes: 0
+                sort: 'ASC',
+                sortBy: 'votes'
               });
             }}>
-            {showTabs === 'show' ? 'Top' : ''}
+            {showTabs === 'show' ? 'Worst' : ''}
           </button>
         </div>
       </div>

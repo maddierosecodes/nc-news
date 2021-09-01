@@ -1,21 +1,21 @@
 import SignIn from './SignIn';
 import SignUp from './SignUp';
-import OtherProfile from './OtherProfile';
-import MyProfile from './MyProfile';
+import UserProfile from './UserProfile';
+import MyProfile from './UserProfile';
 import { ContainerContext } from './Container';
 import { useContext, useEffect } from 'react';
 
-const Profile = () => {
-
+const Profile = ({ articles, setCurrentArticle }) => {
   const { showTabs, switchShowTabs } = useContext(ContainerContext);
- useEffect(() => {
-   if (showTabs === 'hide') switchShowTabs(showTabs);
- }, [showTabs, switchShowTabs]);
+
+  useEffect(() => {
+    if (showTabs === 'hide') switchShowTabs(showTabs);
+  }, [showTabs, switchShowTabs]);
+
   return (
     <div className="profile">
       <p>Profile</p>
-      <MyProfile />
-      <OtherProfile />
+      <UserProfile articles={articles} setCurrentArticle={setCurrentArticle} />
       <SignIn />
       <SignUp />
     </div>

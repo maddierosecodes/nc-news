@@ -14,11 +14,29 @@ import axios from 'axios';
 
 function App() {
   //States
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState([
+    {
+      author: 'anon',
+      title: 'Oops',
+      article_id: 0,
+      topics: 'cooking',
+      created_at: '2020-11-22T00:00:00.000Z',
+      votes: 0,
+      comment_count: '0'
+    }
+  ]);
+  const [currentArticle, setCurrentArticle] = useState({
+    author: 'anon',
+    title: 'Oops',
+    article_id: 0,
+    topics: 'cooking',
+    created_at: '2020-11-22T00:00:00.000Z',
+    votes: 0,
+    comment_count: '0'
+  });
   const [currentFilter, setFilter] = useState({
     sort: 'DESC',
-    sortBy: 'date',
-    votes: 10
+    sortBy: 'created_at'
   });
   const [latest, setLatest] = useState([
     { text: 'Welcome to NC News!', link: '/' },
@@ -44,13 +62,19 @@ function App() {
           <Switch>
             <div className="container_content">
               <Route exact path="/">
-                <Main articles={articles} />
+                <Main
+                  articles={articles}
+                  setCurrentArticle={setCurrentArticle}
+                />
               </Route>
               <Route exact path="/profile/:username">
-                <Profile />
+                <Profile
+                  articles={articles}
+                  setCurrentArticle={setCurrentArticle}
+                />
               </Route>
               <Route exact path="/articles/:article">
-                <Article />
+                <Article currentArticle={currentArticle} />
               </Route>
               <Route exact path="/post">
                 <Post />
