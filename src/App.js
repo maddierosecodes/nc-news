@@ -10,10 +10,12 @@ import Profile from './Components/Profile';
 // Package Imports
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function App() {
   //States
-  const [currentFilter, setCurrentFilter] = useState({
+  const [articles, setArticles] = useState([]);
+  const [currentFilter, setFilter] = useState({
     sort: 'DESC',
     sortBy: 'date',
     votes: 10
@@ -24,30 +26,36 @@ function App() {
   ]);
   const [categories, setCategories] = useState(['none']);
   const [currentUser, setCurrentUser] = useState({ username: 'signedOut' });
+  // Use Effects
+
   // HTML
   return (
     <div className="App">
       <Router>
-        <Header
-          setCurrentFilter={setCurrentFilter}
-          categories={categories}
-          currentUser={currentUser}
-          latest={latest}
-        />
-        <ContainerProvider setCurrentFilter={setCurrentFilter}>
+        <ContainerProvider>
+          <Header
+            categories={categories}
+            currentUser={currentUser}
+            latest={latest}
+            setFilter={setFilter}
+            currentFilter={currentFilter}
+            setArticles={setArticles}
+          />
           <Switch>
-            <Route exact path="/">
-              <Main />
-            </Route>
-            <Route exact path="/profile/:username">
-              <Profile />
-            </Route>
-            <Route exact path="/articles/:article">
-              <Article />
-            </Route>
-            <Route exact path="/post">
-              <Post />
-            </Route>
+            <div className="container_content">
+              <Route exact path="/">
+                <Main articles={articles} />
+              </Route>
+              <Route exact path="/profile/:username">
+                <Profile />
+              </Route>
+              <Route exact path="/articles/:article">
+                <Article />
+              </Route>
+              <Route exact path="/post">
+                <Post />
+              </Route>
+            </div>
           </Switch>
         </ContainerProvider>
       </Router>

@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+.container__buttonBar__tablinks {
+  width: 8vw;
+  height: 3vh;
+}
