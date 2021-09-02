@@ -1,13 +1,18 @@
 import { ContainerContext } from './Container';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 
-const UserProfile = ({ articles, setCurrentArticle }) => {
+const UserProfile = ({ articles, setCurrentArticle, currentFilter }) => {
   const { username } = useParams();
-  const userArticles = articles.filter((article) => {
-    return article.author === username;
-  });
+  const [userArticles, setUserArticles] = useState([]);
+
+  useEffect(() => {
+    let urlString = `https://nc-news-maddie.herokuapp.com/api/users/articles/${username}?order=${currentFilter.sort}&sort_by=${currentFilter.sortBy}`;
+    axios.get(urlString).then((res) => {
+      setUserArticles(res.data.articles.articles);
+    });
+  }, [username, currentFilter]);
 
   return (
     <div className="myProfile">

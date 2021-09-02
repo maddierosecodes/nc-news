@@ -14,7 +14,6 @@ const Header = ({
   const { showTabs } = useContext(ContainerContext);
   useEffect(() => {
     let urlString = `https://nc-news-maddie.herokuapp.com/api/articles?order=${currentFilter.sort}&sort_by=${currentFilter.sortBy}`;
-
     axios.get(urlString).then((res) => {
       setArticles(res.data.articles);
     });

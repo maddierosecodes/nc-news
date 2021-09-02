@@ -69,6 +69,7 @@ function App() {
               </Route>
               <Route exact path="/profile/:username">
                 <Profile
+                  currentFilter={currentFilter}
                   articles={articles}
                   setCurrentArticle={setCurrentArticle}
                 />

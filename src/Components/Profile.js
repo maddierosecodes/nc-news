@@ -5,7 +5,7 @@ import MyProfile from './UserProfile';
 import { ContainerContext } from './Container';
 import { useContext, useEffect } from 'react';
 
-const Profile = ({ articles, setCurrentArticle }) => {
+const Profile = ({ articles, setCurrentArticle, currentFilter }) => {
   const { showTabs, switchShowTabs } = useContext(ContainerContext);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const Profile = ({ articles, setCurrentArticle }) => {
   return (
     <div className="profile">
       <p>Profile</p>
-      <UserProfile articles={articles} setCurrentArticle={setCurrentArticle} />
+      <UserProfile articles={articles} setCurrentArticle={setCurrentArticle} currentFilter={currentFilter} />
       <SignIn />
       <SignUp />
     </div>
