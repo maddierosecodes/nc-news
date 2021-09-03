@@ -3,7 +3,13 @@ import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const Main = ({ articles, setCurrentArticle, setArticles }) => {
+const Main = ({
+  articles,
+  setCurrentArticle,
+  setArticles,
+  setFilter,
+  setBgColour
+}) => {
   const { showTabs, switchShowTabs } = useContext(ContainerContext);
   const [vote, setVote] = useState({});
 
@@ -33,32 +39,48 @@ const Main = ({ articles, setCurrentArticle, setArticles }) => {
 
   return (
     <div className="main">
-      <p>Main</p>
       <ul className="main__article__list">
         {articles.map((article) => {
           return (
             <li key={article.article_id} className="main__article_item">
               <div className="main__article__box">
                 <Link
-                  onClick={setCurrentArticle(article)}
+                  onClick={() => {
+                    setCurrentArticle(article);
+                    setFilter({
+                      sort: 'DESC',
+                      sortBy: 'votes'
+                    });
+                    setBgColour('#C2D3D6');
+                  }}
                   to={`/articles/${article.article_id}`}>
-                  <p>{article.title}</p>{' '}
+                  <p>{article.title}</p>
                 </Link>
-                <Link to={`/profile/${article.author}`}>
+                <Link
+                  onClick={() => {
+                    setBgColour('#C2D3D6');
+                    setFilter({
+                      sort: 'DESC',
+                      sortBy: 'votes'
+                    });
+                  }}
+                  to={`/profile/${article.author}`}>
                   <p>{article.author}</p>
                 </Link>
                 <button
+                  className="main__upVote"
                   onClick={() => {
                     setVote({ article_id: article.article_id, votes: 1 });
                   }}>
-                  UP
+                  ⬆
                 </button>
                 <p>{article.votes}</p>
                 <button
+                  className="main__downVote"
                   onClick={() => {
                     setVote({ article_id: article.article_id, votes: -1 });
                   }}>
-                  DOWN
+                  ⬇
                 </button>
               </div>
             </li>

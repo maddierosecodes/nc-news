@@ -44,6 +44,8 @@ function App() {
   ]);
   const [categories, setCategories] = useState(['none']);
   const [currentUser, setCurrentUser] = useState({ username: 'signedOut' });
+  const [bgColour, setBgColour] = useState('#C2D3D6');
+
   // Use Effects
 
   // HTML
@@ -51,38 +53,45 @@ function App() {
     <div className="App">
       <Router>
         <ContainerProvider>
-          <Header
-            categories={categories}
-            currentUser={currentUser}
-            latest={latest}
-            setFilter={setFilter}
-            currentFilter={currentFilter}
-            setArticles={setArticles}
-          />
-          <Switch>
-            <div className="container_content">
-              <Route exact path="/">
-                <Main
-                  articles={articles}
-                  setCurrentArticle={setCurrentArticle}
-                  setArticles={setArticles}
-                />
-              </Route>
-              <Route exact path="/profile/:username">
-                <Profile
-                  currentFilter={currentFilter}
-                  articles={articles}
-                  setCurrentArticle={setCurrentArticle}
-                />
-              </Route>
-              <Route exact path="/articles/:article">
-                <Article currentArticle={currentArticle} />
-              </Route>
-              <Route exact path="/post">
-                <Post />
-              </Route>
-            </div>
-          </Switch>
+          <div className="container__app">
+            <Header
+              categories={categories}
+              currentUser={currentUser}
+              latest={latest}
+              setFilter={setFilter}
+              currentFilter={currentFilter}
+              setArticles={setArticles}
+              setBgColour={setBgColour}
+            />
+            <Switch>
+              <div
+                className="container_content"
+                style={{ 'background-color': bgColour }}>
+                <Route exact path="/">
+                  <Main
+                    articles={articles}
+                    setCurrentArticle={setCurrentArticle}
+                    setArticles={setArticles}
+                    setBgColour={setBgColour}
+                    setFilter={setFilter}
+                  />
+                </Route>
+                <Route exact path="/profile/:username">
+                  <Profile
+                    currentFilter={currentFilter}
+                    articles={articles}
+                    setCurrentArticle={setCurrentArticle}
+                  />
+                </Route>
+                <Route exact path="/articles/:article">
+                  <Article currentArticle={currentArticle} />
+                </Route>
+                <Route exact path="/post">
+                  <Post />
+                </Route>
+              </div>
+            </Switch>
+          </div>
         </ContainerProvider>
       </Router>
     </div>

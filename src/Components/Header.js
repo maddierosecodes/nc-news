@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ContainerContext } from './Container';
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import axios from 'axios';
 
 const Header = ({
@@ -9,7 +9,8 @@ const Header = ({
   latest,
   currentUser,
   setFilter,
-  currentFilter
+  currentFilter,
+  setBgColour
 }) => {
   const { showTabs } = useContext(ContainerContext);
   useEffect(() => {
@@ -19,15 +20,47 @@ const Header = ({
     });
   }, [currentFilter, setArticles]);
 
+  const [button, setButton] = useState('tablinks--hot');
+
   return (
     <div className="header">
-      <h1>NC NEWS</h1>
+      <Link
+        onClick={() => {
+          setBgColour('#C2D3D6');
+          setFilter({
+            sort: 'DESC',
+            sortBy: 'votes'
+          });
+        }}
+        to={`/`}>
+        <h1>NC NEWS</h1>
+      </Link>
+
       <nav>
-        <Link to={`/profile/test`}>Profile link</Link>
+        <Link
+          to={`/profile/test`}
+          onClick={() => {
+            setBgColour('#C2D3D6');
+            setFilter({
+              sort: 'DESC',
+              sortBy: 'votes'
+            });
+          }}>
+          Profile link/Sign In
+        </Link>
         <br></br>
-        <Link to={`/post`}>Post link</Link>
+        <Link
+          onClick={() => {
+            setBgColour('#C2D3D6');
+            setFilter({
+              sort: 'DESC',
+              sortBy: 'votes'
+            });
+          }}
+          to={`/post`}>
+          Post link
+        </Link>
         <br></br>
-        <Link to={`/`}>Main link</Link>
       </nav>
       <div className="container">
         <div className="container__buttonBar">
@@ -36,7 +69,8 @@ const Header = ({
             disabled={showTabs === 'show' ? false : true}
             title="Sort by: most likes"
             onClick={() => {
-              return setFilter({
+              setBgColour('#C2D3D6');
+              setFilter({
                 sort: 'DESC',
                 sortBy: 'votes'
               });
@@ -48,6 +82,7 @@ const Header = ({
             disabled={showTabs === 'show' ? false : true}
             title="Sort by: most recent"
             onClick={() => {
+              setBgColour('#D6D1C2');
               setFilter({
                 sort: 'DESC',
                 sortBy: 'created_at'
@@ -60,6 +95,7 @@ const Header = ({
             disabled={showTabs === 'show' ? false : true}
             title="Sort by: most comments"
             onClick={() => {
+              setBgColour('#C2D6C9');
               setFilter(() => {
                 return {
                   sort: 'DESC',
@@ -74,6 +110,7 @@ const Header = ({
             disabled={showTabs === 'show' ? false : true}
             title="Sort by: least likes"
             onClick={() => {
+              setBgColour('#D6C8DD');
               setFilter({
                 sort: 'ASC',
                 sortBy: 'votes'
