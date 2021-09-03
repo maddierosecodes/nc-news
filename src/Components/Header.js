@@ -34,6 +34,7 @@ const Header = ({
           <button
             className="container__buttonBar__tablinks tablinks--hot"
             disabled={showTabs === 'show' ? false : true}
+            title="Sort by: most likes"
             onClick={() => {
               return setFilter({
                 sort: 'DESC',
@@ -45,6 +46,7 @@ const Header = ({
           <button
             className="container__buttonBar__tablinks tablinks--latest"
             disabled={showTabs === 'show' ? false : true}
+            title="Sort by: most recent"
             onClick={() => {
               setFilter({
                 sort: 'DESC',
@@ -56,6 +58,7 @@ const Header = ({
           <button
             className="container__buttonBar__tablinks tablinks--popular"
             disabled={showTabs === 'show' ? false : true}
+            title="Sort by: most comments"
             onClick={() => {
               setFilter(() => {
                 return {
@@ -69,6 +72,7 @@ const Header = ({
           <button
             className="container__buttonBar__tablinks tablinks--worst"
             disabled={showTabs === 'show' ? false : true}
+            title="Sort by: least likes"
             onClick={() => {
               setFilter({
                 sort: 'ASC',
