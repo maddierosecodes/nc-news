@@ -25,7 +25,7 @@ const Main = ({ articles, setCurrentArticle, setArticles }) => {
           return newArticles;
         });
       });
-  }, [vote]);
+  }, [setArticles, vote]);
 
   useEffect(() => {
     if (showTabs === 'hide') switchShowTabs(showTabs);
