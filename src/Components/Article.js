@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 
 import axios from 'axios';
 
-const Article = ({ currentArticle }) => {
+const Article = () => {
   const { article } = useParams();
 
   const { showTabs, switchShowTabs } = useContext(ContainerContext);

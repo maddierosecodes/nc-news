@@ -3,34 +3,33 @@ import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const Main = ({
-  articles,
-  setCurrentArticle,
-  setArticles,
-  setFilter,
-  setBgColour
-}) => {
+const Main = ({ articles, setArticles, setFilter, setBgColour }) => {
   const { showTabs, switchShowTabs } = useContext(ContainerContext);
   const [vote, setVote] = useState({});
 
   useEffect(() => {
-    axios
-      .patch(
-        `https://nc-news-maddie.herokuapp.com/api/articles/${vote.article_id}`,
-        { inc_votes: vote.votes }
-      )
-      .then(() => {
-        setArticles((currentArticles) => {
-          let newArticles = [];
-          currentArticles.forEach((article) => {
-            if (article.article_id === vote.article_id) {
-              article.votes += vote.votes;
-            }
-            newArticles.push(article);
+    if (vote.article_id) {
+      axios
+        .patch(
+          `https://nc-news-maddie.herokuapp.com/api/articles/${vote.article_id}`,
+          { inc_votes: vote.votes }
+        )
+        .then(() => {
+          setArticles((currentArticles) => {
+            let newArticles = [];
+            currentArticles.forEach((article) => {
+              if (article.article_id === vote.article_id) {
+                const newArticle = { ...article };
+                newArticle.votes += vote.votes;
+                newArticles.push(newArticle);
+              } else {
+                newArticles.push(article);
+              }
+            });
+            return newArticles;
           });
-          return newArticles;
         });
-      });
+    }
   }, [setArticles, vote]);
 
   useEffect(() => {
@@ -46,7 +45,6 @@ const Main = ({
               <div className="main__article__box">
                 <Link
                   onClick={() => {
-                    setCurrentArticle(article);
                     setFilter({
                       sort: 'DESC',
                       sortBy: 'votes'

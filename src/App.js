@@ -25,15 +25,7 @@ function App() {
       comment_count: '0'
     }
   ]);
-  const [currentArticle, setCurrentArticle] = useState({
-    author: 'anon',
-    title: 'Oops',
-    article_id: 0,
-    topics: 'cooking',
-    created_at: '2020-11-22T00:00:00.000Z',
-    votes: 0,
-    comment_count: '0'
-  });
+
   const [currentFilter, setFilter] = useState({
     sort: 'DESC',
     sortBy: 'created_at'
@@ -43,7 +35,7 @@ function App() {
     { text: 'Bear Attacks Superfan', link: '/profile' }
   ]);
   const [categories, setCategories] = useState(['none']);
-  const [currentUser, setCurrentUser] = useState({ username: 'signedOut' });
+
   const [bgColour, setBgColour] = useState('#C2D3D6');
 
   // Use Effects
@@ -56,41 +48,35 @@ function App() {
           <div className="container__app">
             <Header
               categories={categories}
-              currentUser={currentUser}
               latest={latest}
               setFilter={setFilter}
               currentFilter={currentFilter}
               setArticles={setArticles}
               setBgColour={setBgColour}
             />
-            <Switch>
-              <div
-                className="container_content"
-                style={{ 'background-color': bgColour }}>
+            <div
+              className="container_content"
+              style={{ 'background-color': bgColour }}>
+              <Switch>
                 <Route exact path="/">
                   <Main
                     articles={articles}
-                    setCurrentArticle={setCurrentArticle}
                     setArticles={setArticles}
                     setBgColour={setBgColour}
                     setFilter={setFilter}
                   />
                 </Route>
                 <Route exact path="/profile/:username">
-                  <Profile
-                    currentFilter={currentFilter}
-                    articles={articles}
-                    setCurrentArticle={setCurrentArticle}
-                  />
+                  <Profile currentFilter={currentFilter} articles={articles} />
                 </Route>
                 <Route exact path="/articles/:article">
-                  <Article currentArticle={currentArticle} />
+                  <Article />
                 </Route>
                 <Route exact path="/post">
                   <Post />
                 </Route>
-              </div>
-            </Switch>
+              </Switch>
+            </div>
           </div>
         </ContainerProvider>
       </Router>

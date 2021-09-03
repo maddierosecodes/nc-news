@@ -7,7 +7,6 @@ const Header = ({
   setArticles,
   categories,
   latest,
-  currentUser,
   setFilter,
   currentFilter,
   setBgColour
