@@ -1,6 +1,7 @@
 import { UserContext } from './User';
 import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const SignIn = () => {
   const [submit, setSubmit] = useState('grumpy19');
@@ -33,13 +34,15 @@ const SignIn = () => {
           onChange={(event) => setSubmit(event.target.value)}
         />
       </label>
-      <button
-        onClick={() => {
-          setClicked(true);
-        }}
-        className="signIn__signInButton">
-        Sign In
-      </button>
+      <Link to={`/profile/${submit}`}>
+        <button
+          onClick={(event) => {
+            setClicked(true);
+          }}
+          className="signIn__signInButton">
+          Sign In
+        </button>
+      </Link>
     </div>
   );
 };

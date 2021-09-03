@@ -46,7 +46,9 @@ const Header = ({
               sortBy: 'votes'
             });
           }}>
-          Profile link/Sign In
+          {currentUser.username === 'none'
+            ? 'Sign in/up'
+            : currentUser.username}
         </Link>
         <br></br>
         <Link
