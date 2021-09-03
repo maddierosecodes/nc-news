@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ContainerContext } from './Container';
+import { UserContext } from './User';
 import { useEffect, useContext, useState } from 'react';
 import axios from 'axios';
 
@@ -19,7 +20,7 @@ const Header = ({
     });
   }, [currentFilter, setArticles]);
 
-  const [button, setButton] = useState('tablinks--hot');
+  const { currentUser } = useContext(UserContext);
 
   return (
     <div className="header">
@@ -37,7 +38,7 @@ const Header = ({
 
       <nav>
         <Link
-          to={`/profile/test`}
+          to={`/profile/${currentUser.username}`}
           onClick={() => {
             setBgColour('#C2D3D6');
             setFilter({

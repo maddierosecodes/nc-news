@@ -11,8 +11,8 @@ const Profile = ({ articles, setCurrentArticle, currentFilter }) => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
 
   const [account, setAccount] = useState({
-    signIn: 'true',
-    signUp: 'true'
+    signIn: false,
+    signUp: false
   });
 
   useEffect(() => {
@@ -22,9 +22,27 @@ const Profile = ({ articles, setCurrentArticle, currentFilter }) => {
   if (currentUser.username === 'none') {
     return (
       <div className="userLogin">
-        <p>HI</p>
-        {account.signIn ? <SignIn /> : null}
-        {account.signUp ? <SignUp /> : null}
+        <p>Please login or create an account!</p>
+        {account.signIn ? (
+          <SignIn />
+        ) : (
+          <button
+            onClick={() => {
+              setAccount({ signIn: true, signUp: false });
+            }}>
+            Sign In
+          </button>
+        )}
+        {account.signUp ? (
+          <SignUp />
+        ) : (
+          <button
+            onClick={() => {
+              setAccount({ signIn: false, signUp: true });
+            }}>
+            Sign Up
+          </button>
+        )}
       </div>
     );
   } else

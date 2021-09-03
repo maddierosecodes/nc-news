@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import { UserContext } from './User';
 
-const UserProfile = ({ articles, setCurrentArticle, currentFilter }) => {
+const UserProfile = ({ articles, currentFilter }) => {
   const { username } = useParams();
   const [userArticles, setUserArticles] = useState([]);
   const { currentUser } = useContext(UserContext);
@@ -25,7 +25,6 @@ const UserProfile = ({ articles, setCurrentArticle, currentFilter }) => {
             <li key={article_id} className="myProfile__article">
               <div className="main__article__box">
                 <Link
-                  onClick={setCurrentArticle(articles.article_id)}
                   to={`/articles/${article_id}`}>
                   <p>{title}</p>
                 </Link>

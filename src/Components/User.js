@@ -9,8 +9,20 @@ export const UserProvider = ({ children }) => {
     name: 'none'
   });
 
+  const switchCurrentUser = (user) => {
+    setCurrentUser((currUser) =>
+      currUser.username === 'none'
+        ? user
+        : {
+            username: 'none',
+            avatar_url: 'none',
+            name: 'none'
+          }
+    );
+  };
   return (
-    <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+    <UserContext.Provider
+      value={{ currentUser, setCurrentUser, switchCurrentUser }}>
       <div className="userArea">{children}</div>
     </UserContext.Provider>
   );

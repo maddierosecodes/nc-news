@@ -26,7 +26,8 @@ const Article = () => {
       <h2>{viewArticle.title}</h2>
 
       <h3>
-        written by <Link to={`/profile/${viewArticle.author}`}>{viewArticle.author}</Link>
+        written by{' '}
+        <Link to={`/profile/${viewArticle.author}`}>{viewArticle.author}</Link>
       </h3>
 
       <p>{viewArticle.body}</p>
