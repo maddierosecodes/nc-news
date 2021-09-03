@@ -65,6 +65,7 @@ function App() {
                 <Main
                   articles={articles}
                   setCurrentArticle={setCurrentArticle}
+                  setArticles={setArticles}
                 />
               </Route>
               <Route exact path="/profile/:username">

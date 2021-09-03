@@ -14,7 +14,7 @@ const Profile = ({ articles, setCurrentArticle, currentFilter }) => {
 
   return (
     <div className="profile">
-      <p>Profile</p>
+      <p>{ }</p>
       <UserProfile articles={articles} setCurrentArticle={setCurrentArticle} currentFilter={currentFilter} />
       <SignIn />
       <SignUp />

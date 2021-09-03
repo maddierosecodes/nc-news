@@ -42,10 +42,31 @@
 /* My CSS*/
 
 .container__buttonBar__tablinks {
+  min-width: 85px;
   width: 8vw;
   height: 3vh;
 }
 
-.article {
+.container_content {
+  min-width: 475px;
+  margin: auto;
+  width: 32vw;
+  height: 80vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: center;
+}
+
+.main__article__list,
+.myProfile__article__list {
   list-style-type: none;
+}
+.main__article__box,
+.myProfile__article__box {
+  list-style-type: none;
+  border: 1px solid;
+}
+
+.myProfile__title {
+  text-align: center;
 }

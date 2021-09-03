@@ -24,7 +24,11 @@ const Article = ({ currentArticle }) => {
   return (
     <div className="article">
       <h2>{viewArticle.title}</h2>
-      <h3>written by {viewArticle.author}</h3>
+
+      <h3>
+        written by <Link to={`/profile/${viewArticle.author}`}>{viewArticle.author}</Link>
+      </h3>
+
       <p>{viewArticle.body}</p>
     </div>
   );

@@ -21,11 +21,9 @@ const Header = ({
 
   return (
     <div className="header">
-      <p>Header</p>
+      <h1>NC NEWS</h1>
       <nav>
-        <Link to={`/articles/1`}>Articles link</Link>
-        <br></br>
-        <Link to={`/profile/username`}>Profile link</Link>
+        <Link to={`/profile/test`}>Profile link</Link>
         <br></br>
         <Link to={`/post`}>Post link</Link>
         <br></br>

@@ -16,20 +16,22 @@ const UserProfile = ({ articles, setCurrentArticle, currentFilter }) => {
 
   return (
     <div className="myProfile">
-      <p>My Profile</p>
-      <ul>
+      <h2 className="myProfile__title">{username}</h2>
+      <ul className="main__article__list">
         {userArticles.map(({ author, title, votes, article_id }) => {
           return (
-            <li key={article_id} className="article">
-              <Link
-                onClick={setCurrentArticle(articles.article_id)}
-                to={`/articles/${article_id}`}>
-                <p>{title}</p>
-              </Link>
-              <Link to={`/profile/${author}`}>
-                <p>{author}</p>
-              </Link>
-              <p>{votes}</p>
+            <li key={article_id} className="myProfile__article">
+              <div className="main__article__box">
+                <Link
+                  onClick={setCurrentArticle(articles.article_id)}
+                  to={`/articles/${article_id}`}>
+                  <p>{title}</p>
+                </Link>
+                <Link to={`/profile/${author}`}>
+                  <p>{author}</p>
+                </Link>
+                <p>{votes}</p>
+              </div>
             </li>
           );
         })}
